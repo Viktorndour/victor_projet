@@ -1,52 +1,61 @@
 import 'package:flutter/material.dart';
 import 'package:victor_projet/main.dart';
 import 'package:victor_projet/screen/communaute_scren.dart/communaute_screen.dart';
+import 'package:victor_projet/screen/countries_screen.dart';
 
 class BottomNav extends StatefulWidget {
   int indexSelection;
-   BottomNav({super.key, required this.indexSelection});
-  //BottomNav({key?key});
+  BottomNav({super.key, required this.indexSelection});
+
+  @override
   BottomNavState createState() => BottomNavState();
 }
 
 class BottomNavState extends State<BottomNav> {
-  
-  void getSelectItem() {
+  void getSelelctItem() {
     switch (widget.indexSelection) {
       case 0:
-        Navigator.push(context,MaterialPageRoute(builder:(context)
-=> PageAcceuil()));
-       break;
-     case 1:
-       Navigator.push(context,MaterialPageRoute(builder:(context)
-=> pageCommunaute()));
-       break;
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => PageAcceuil()),
+        );
+        break;
+      case 1:
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => pageCommunaute()),
+        );
+        break;
+      case 2:
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => CountriesScreen()),
+        );
+        break;
       default:
-       break; 
+        break;
     }
   }
+
   @override
-  Widget build(BuildContext) {
+  Widget build(BuildContext context) {
     return BottomNavigationBar(
-      backgroundColor: Colors.red,
+      backgroundColor: Colors.indigoAccent,
       selectedItemColor: Colors.black,
       unselectedItemColor: Colors.white,
       items: [
-        BottomNavigationBarItem(
-          label: "Accueil",
-          icon: Icon(Icons.home),
-        ),
-        BottomNavigationBarItem(
-          label: "communauté",
-          icon: Icon(Icons.person)
-        )
+        BottomNavigationBarItem(label: "Acceuil", icon: Icon(Icons.home)),
+        BottomNavigationBarItem(label: "Communaute", icon: Icon(Icons.person)),
+        BottomNavigationBarItem(label: "Pays", icon: Icon(Icons.flag)),
       ],
       currentIndex: widget.indexSelection,
       onTap: (newIndex) {
-        setState(() {
-          widget.indexSelection = newIndex;
-          getSelectItem();
-        });
+        if (widget.indexSelection != newIndex) {
+          setState(() {
+            widget.indexSelection = newIndex;
+            getSelelctItem();
+          });
+        }
       },
     );
   }

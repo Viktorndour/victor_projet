@@ -114,7 +114,7 @@ class LoginState extends State<LoginScreen> {
     if (_fromkey.currentState!.validate()) {
       var email = _emailEditController.text.trim();
       var password = _passewordEditController.text.trim();
-      if(email == "ndourvictor7@gmail.com" && password == "kevin de bruyne17") {
+      if(email == "ndourvictor7@gmail.com" && password == "1234") {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
           backgroundColor: Colors.green,
           content: Text(
